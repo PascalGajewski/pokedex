@@ -138,7 +138,7 @@ function renderPokemonDetailsMoves() {
         document.getElementById('moves-info').innerHTML += `
     <tr>
     <td class="grey">At Level ${currentPokemon['moves'][i]['version_group_details'][0]['level_learned_at']}</td>
-    <td class="black">${currentPokemon['moves'][i]['move']['name']}</td>
+    <td class="black">${capitalizeFirstLetter(currentPokemon['moves'][i]['move']['name'])}</td>
     </tr>
     `;
     }
