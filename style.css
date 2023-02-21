@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f6f8fc !important;
+    padding: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+.pokemon-card {
+    display: flex;
+    flex-direction: column;
+}
+
+#currentPokemon {
+    display: grid;
+    flex-direction: column;
+    background-color: #fb6c6c;
+    color: white;
+    border-radius: 30px;
+    padding: 24px;
+}
+
+#currentPokemon h1 {
+    align-self: center;
+    justify-self: center;
+    margin: 24px 0px;
+}
+
+#pokemonImage {
+    height: 200px;
+    width: 200px;
+    object-fit: contain;
+    justify-self: center;
+    align-self: end;
+    z-index: 1;
+}
+
+.info-container {
+    background-color: white;
+    border-radius: 30px;
+    margin-top: -50px;
+    padding: 24px;
+}
+
+.navbar {
+    padding: 30px 0px !important;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.nav{
+    --bs-nav-link-color: #adb5bd !important;
+    --bs-nav-link-hover-color: #373b3e;
+}
+
+.grey{
+    color: #adb5bd;
+}
+
+.black{
+    color: #373b3e;
+}
+
+table {
+    margin-top: 16px;
+    width: 100%;
+}
+
+td:first-of-type{
+    width: 50%;
+}
+
+.bar-spacing{
+    width: 40% !important;
+}
+
+.progress, .progress-stacked {
+    --bs-progress-height: 0.5rem !important;
+}
