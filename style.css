@@ -7,6 +7,33 @@ body {
     justify-content: center;
 }
 
+#pokedex {
+    text-align: center;
+}
+
+#pokemons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.pokedex-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    padding: 24px;
+    height: 25vh;
+    width: 20vw;
+}
+
+.pokedex-card-img {
+    height: 100px;
+    width: 100px;
+    object-fit: contain;
+    justify-self: end;
+    align-self: flex-end;
+}
+
 .pokemon-card {
     display: flex;
     flex-direction: column;
@@ -19,6 +46,7 @@ body {
     color: white;
     border-radius: 30px;
     padding: 24px;
+    z-index: 1;
 }
 
 #currentPokemon h1 {
@@ -78,4 +106,10 @@ td:first-of-type{
 
 .progress, .progress-stacked {
     --bs-progress-height: 0.5rem !important;
+}
+
+.btn-position{
+    position: absolute;
+    top: 50px;
+    right: 50px;
 }

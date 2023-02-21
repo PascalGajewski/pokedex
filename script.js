@@ -1,6 +1,9 @@
 let currentPokemon;
 let currentPokemonColor;
 let currentPokemonEvolution;
+let Pokemon;
+let PokemonColor;
+let PokemonEvolution;
 let species = [];
 let abilities = [];
 
@@ -8,8 +11,34 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-async function loadPokemon() {
-    let url = `https://pokeapi.co/api/v2/pokemon/charmander`;
+async function renderPokedex() {
+    document.getElementById('pokedex').innerHTML = ``;
+    document.getElementById('pokedex').innerHTML += `
+    <div class="w-100 pb-5"><h1>Pokedex</h1></div>
+    <div id="pokemons"></div>
+    `;
+    for (let p = 1; p < 151; p++) {
+        let url = `https://pokeapi.co/api/v2/pokemon/${p}`;
+        let response = await fetch(url);
+        Pokemon = await response.json();
+        let urlColor = `${Pokemon['species']['url']}`;
+        let responseColor = await fetch(urlColor);
+        PokemonColor = await responseColor.json();
+        document.getElementById('pokemons').innerHTML += `
+        <div class="pokedex-card" id="pokemon-id-${p}" onclick="loadPokemon(${p})">
+            <h3 id="pokemon-id-${p}-name">${capitalizeFirstLetter(Pokemon['name'])}</h3>
+            <img class="pokedex-card-img" id="pokemon-id-${p}-img" src="${Pokemon['sprites']['other']['dream_world']['front_default']}">
+        </div>
+        `;
+        document.getElementById(`pokemon-id-${p}`).style.backgroundColor = `light` + PokemonColor['color']['name'];
+        console.log(PokemonColor['color']['name']);
+    }
+}
+
+async function loadPokemon(p) {
+    document.getElementById('pokedex').classList.add('d-none');
+    document.getElementById('pokemon-card').classList.remove('d-none');
+    let url = `https://pokeapi.co/api/v2/pokemon/${p}`;
     let response = await fetch(url);
     currentPokemon = await response.json();
     console.log(currentPokemon);
@@ -24,8 +53,16 @@ async function renderPokemonInfo() {
     let urlColor = `${currentPokemon['species']['url']}`;
     let responseColor = await fetch(urlColor);
     currentPokemonColor = await responseColor.json();
-    document.getElementById('currentPokemon').style.backgroundColor = `light` + currentPokemonColor['color']['name'];
     console.log(currentPokemonColor);
+    if(currentPokemonColor['color']['name'] !== "white"){
+    document.getElementById('currentPokemon').style.backgroundColor = `light` + currentPokemonColor['color']['name'];
+    }
+    else {
+        document.getElementById('currentPokemon').style.backgroundColor = currentPokemonColor['color']['name'];
+    };
+    if (currentPokemonColor['color']['name'] === "yellow" || currentPokemonColor['color']['name'] === "white"){
+        document.getElementById('currentPokemon').style.color = `black`;
+    };
 }
 
 async function renderPokemonDetails() {
@@ -142,4 +179,9 @@ function renderPokemonDetailsMoves() {
     </tr>
     `;
     }
+}
+
+function backToPokedex(){
+    document.getElementById('pokedex').classList.remove('d-none');
+    document.getElementById('pokemon-card').classList.add('d-none');
 }
