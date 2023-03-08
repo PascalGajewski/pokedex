@@ -15,6 +15,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
+    justify-content: center;
 }
 
 .pokedex-card {
@@ -24,6 +25,7 @@ body {
     padding: 24px;
     height: 25vh;
     width: 20vw;
+    max-width: 250px;
 }
 
 .pokedex-card-img {
@@ -37,12 +39,13 @@ body {
 .pokemon-card {
     display: flex;
     flex-direction: column;
+    max-width: 50%;
 }
 
 #currentPokemon {
     display: grid;
     flex-direction: column;
-    background-color: #fb6c6c;
+    background-color: light;
     color: white;
     border-radius: 30px;
     padding: 24px;
@@ -112,4 +115,10 @@ td:first-of-type{
     position: absolute;
     top: 50px;
     right: 50px;
+}
+
+@media (max-width: 900px){
+    .pokedex-card {
+        min-width: 200px;
+    }
 }

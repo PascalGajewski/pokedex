@@ -1,3 +1,58 @@
+function writePokemonHTML() {
+    document.getElementById('pokemon-card').innerHTML = ``;
+    document.getElementById('pokemon-card').innerHTML += `
+    <button type="button" class="btn btn-secondary btn-lg btn-position" onclick="backToPokedex()">Back to Pokedex</button>
+    <div id="currentPokemon">
+        <h1 id="pokemonName"></h1>
+        <img id="pokemonImage">
+    </div>
+    <div class="info-container">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="about-tab" data-bs-toggle="tab" data-bs-target="#about-tab-pane"
+                    type="button" role="tab" aria-controls="about-tab-pane" aria-selected="true">About</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="base-stats-tab" data-bs-toggle="tab"
+                    data-bs-target="#base-stats-tab-pane" type="button" role="tab"
+                    aria-controls="base-stats-tab-pane" aria-selected="false">Base Stats</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="evolution-tab" data-bs-toggle="tab"
+                    data-bs-target="#evolution-tab-pane" type="button" role="tab" aria-controls="evolution-tab-pane"
+                    aria-selected="false">Evolution</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="moves-tab" data-bs-toggle="tab" data-bs-target="#moves-tab-pane"
+                    type="button" role="tab" aria-controls="moves-tab-pane" aria-selected="false">Moves</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="about-tab-pane" role="tabpanel" aria-labelledby="about-tab"
+                tabindex="0">
+                <table id="about-info">
+                </table>
+            </div>
+            <div class="tab-pane fade" id="base-stats-tab-pane" role="tabpanel" aria-labelledby="base-stats-tab"
+                tabindex="0">
+                <table id="base-stats-info">
+                </table>
+            </div>
+            <div class="tab-pane fade" id="evolution-tab-pane" role="tabpanel" aria-labelledby="evolution-tab"
+                tabindex="0">
+                <table id="evolution-info">
+                </table>
+            </div>
+            <div class="tab-pane fade" id="moves-tab-pane" role="tabpanel" aria-labelledby="moves-tab" tabindex="0">
+                <table id="moves-info">
+                </table>
+            </div>
+        </div>
+    </div>
+`
+}
+
+
 function writePokemonDetailsHTML(){
     writeAboutInfoHTML();
     writeBaseStatsInfoHTML();  
