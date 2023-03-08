@@ -49,7 +49,6 @@ async function loadPokemon(p) {
     let url = `https://pokeapi.co/api/v2/pokemon/${p}`;
     let response = await fetch(url).catch(errorFunction);
     currentPokemon = await response.json();
-    console.log(currentPokemon);
     await renderPokemonInfo();
     writePokemonDetailsHTML();
     renderPokemonDetails();
@@ -61,7 +60,6 @@ async function renderPokemonInfo() {
     let urlcurrentColor = `${currentPokemon['species']['url']}`;
     let responsecurrentColor = await fetch(urlcurrentColor).catch(errorFunction);
     currentPokemonColor = await responsecurrentColor.json();
-    console.log(currentPokemonColor);
     if(currentPokemonColor['color']['name'] != "white" || currentPokemonColor['color']['name'] != "brown" || currentPokemonColor['color']['name'] != "purple"){
     document.getElementById('currentPokemon').style.backgroundColor = currentPokemonColor['color']['name'];
     }
@@ -131,7 +129,6 @@ async function renderPokemonDetailsEvolution() {
     let urlEvolution = `${currentPokemonColor['evolution_chain']['url']}`;
     let responseEvolution = await fetch(urlEvolution).catch(errorFunction);
     currentPokemonEvolution = await responseEvolution.json();
-    console.log(currentPokemonEvolution);
     document.getElementById('evolution-info').innerHTML = ``;
     writeNoEvolution();
     writeEvolutionFrom();
