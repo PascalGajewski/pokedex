@@ -1,7 +1,7 @@
 function writePokemonHTML() {
     document.getElementById('pokemon-card').innerHTML = ``;
     document.getElementById('pokemon-card').innerHTML += `
-    <button type="button" class="btn btn-secondary btn-lg btn-position" onclick="backToPokedex()">Back to Pokedex</button>
+    <div class="pb-5 d-flex"><button type="button" class="btn btn-secondary btn-lg mx-auto" onclick="backToPokedex()">Back to Pokedex</button></div>
     <div id="currentPokemon">
         <h1 id="pokemonName"></h1>
         <img id="pokemonImage">

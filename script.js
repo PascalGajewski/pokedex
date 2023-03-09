@@ -6,6 +6,8 @@ let PokemonColor;
 let PokemonEvolution;
 let species = [];
 let abilities = [];
+let firstPokemon = 1;
+let lastPokemon = 151;
 
 function errorFunction() {
     console.log('Fehler aufgetreten');
@@ -23,10 +25,13 @@ async function render() {
     <div id="pokemons"></div>
     `;
     loadPokedexPokemon();
+    document.getElementById('pokedex').innerHTML += `
+    <div class="pt-5 d-flex"><button type="button" class="btn btn-secondary btn-lg mx-auto" onclick="loadMorePokemon()">Load more Pokemons</button></div>
+    `;
 }
 
 async function loadPokedexPokemon(){
-    for (let p = 1; p < 151; p++) {
+    for (let p = firstPokemon; p < lastPokemon; p++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${p}`;
         let response = await fetch(url).catch(errorFunction);
         Pokemon = await response.json();
@@ -191,4 +196,10 @@ function renderPokemonDetailsMoves() {
 
 function backToPokedex(){
     window.location.assign("index.html");
+}
+
+function loadMorePokemon(){
+    firstPokemon = lastPokemon;
+    lastPokemon = lastPokemon + 50;
+    loadPokedexPokemon();
 }

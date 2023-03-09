@@ -2,7 +2,7 @@ body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
     background-color: #f6f8fc !important;
-    padding: 150px;
+    padding: 100px;
     display: flex;
     justify-content: center;
 }
@@ -23,9 +23,10 @@ body {
     flex-direction: column;
     border-radius: 30px;
     padding: 24px;
-    height: 25vh;
     width: 20vw;
     max-width: 250px;
+    min-height: 25vh;
+    cursor: pointer;
 }
 
 .pokedex-card-img {
@@ -109,12 +110,6 @@ td:first-of-type{
 
 .progress, .progress-stacked {
     --bs-progress-height: 0.5rem !important;
-}
-
-.btn-position{
-    position: absolute;
-    top: 50px;
-    right: 50px;
 }
 
 @media (max-width: 900px){
