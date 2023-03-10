@@ -21,16 +21,23 @@ async function render() {
     writePokemonHTML();
     document.getElementById('pokedex').innerHTML = ``;
     document.getElementById('pokedex').innerHTML += `
-    <div class="w-100 pb-5"><h1>Pokedex</h1></div>
+    <div class="search-bar">
+        <span class="ps-2 space-bar" id="displayed-pokemon">Pokemon Nr. 1 - ${lastPokemon - 1} displayed</span>
+        <input class="text-center mt-2 mb-2" type="text" placeholder="Search Pokemon" id="search" onkeyup="filterPokemon()">
+        <span class="pe-2 space-bar"></span>
+    </div>
+    <div class="w-100 pt-5 text-center"><h1>Pokedex</h1></div>
     <div id="pokemons"></div>
     `;
-    loadPokedexPokemon();
+    loadPokedexPokemon().then(filterPokemon);
     document.getElementById('pokedex').innerHTML += `
-    <div class="pt-5 d-flex"><button type="button" class="btn btn-secondary btn-lg mx-auto" onclick="loadMorePokemon()">Load more Pokemons</button></div>
+    <div class="pt-5 pb-5 d-flex"><button type="button" class="btn btn-secondary btn-lg mx-auto" onclick="loadMorePokemon()">Load more Pokemons</button></div>
+    <button onclick="topFunction()" id="myBtnTop" title="Go to top">∧</button>
+    <button onclick="bottomFunction()" id="myBtnBtm" title="Go to bottom">∨</button>
     `;
 }
 
-async function loadPokedexPokemon(){
+async function loadPokedexPokemon() {
     for (let p = firstPokemon; p < lastPokemon; p++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${p}`;
         let response = await fetch(url).catch(errorFunction);
@@ -65,13 +72,13 @@ async function renderPokemonInfo() {
     let urlcurrentColor = `${currentPokemon['species']['url']}`;
     let responsecurrentColor = await fetch(urlcurrentColor).catch(errorFunction);
     currentPokemonColor = await responsecurrentColor.json();
-    if(currentPokemonColor['color']['name'] != "white" || currentPokemonColor['color']['name'] != "brown" || currentPokemonColor['color']['name'] != "purple"){
-    document.getElementById('currentPokemon').style.backgroundColor = currentPokemonColor['color']['name'];
+    if (currentPokemonColor['color']['name'] != "white" || currentPokemonColor['color']['name'] != "brown" || currentPokemonColor['color']['name'] != "purple") {
+        document.getElementById('currentPokemon').style.backgroundColor = currentPokemonColor['color']['name'];
     }
     else {
         document.getElementById('currentPokemon').style.backgroundColor = currentPokemonColor['color']['name'];
     };
-    if (currentPokemonColor['color']['name'] == "yellow" || currentPokemonColor['color']['name'] == "white"){
+    if (currentPokemonColor['color']['name'] == "yellow" || currentPokemonColor['color']['name'] == "white") {
         document.getElementById('currentPokemon').style.color = `black`;
     };
 }
@@ -194,12 +201,37 @@ function renderPokemonDetailsMoves() {
     }
 }
 
-function backToPokedex(){
+function backToPokedex() {
     window.location.assign("index.html");
 }
 
-function loadMorePokemon(){
+function loadMorePokemon() {
     firstPokemon = lastPokemon;
     lastPokemon = lastPokemon + 50;
+    document.getElementById('displayed-pokemon').innerHTML = ``;
+    document.getElementById('displayed-pokemon').innerHTML += `Pokemon Nr. 1 - ${lastPokemon - 1} displayed`;
     loadPokedexPokemon();
 }
+
+function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+function bottomFunction() {
+    document.body.scrollTo(0, document.body.scrollHeight); // For Safari
+    document.documentElement.scrollTo(0, document.body.scrollHeight); // For Chrome, Firefox, IE and Opera
+}
+
+function filterPokemon() {
+    let search = document.getElementById('search').value;
+    search = search.toLowerCase();
+    for (let i = 1; i < lastPokemon; i++) {
+        if (!document.getElementById(`pokemon-id-${i}-name`).innerHTML.toLowerCase().includes(search)) {
+            document.getElementById(`pokemon-id-${i}`).classList.add('d-none');
+        };
+        if (document.getElementById(`pokemon-id-${i}-name`).innerHTML.toLowerCase().includes(search) && document.getElementById(`pokemon-id-${i}`).classList.contains('d-none')) {
+            document.getElementById(`pokemon-id-${i}`).classList.remove('d-none');
+        }
+    }
+};

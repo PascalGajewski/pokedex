@@ -2,20 +2,34 @@ body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
     background-color: #f6f8fc !important;
-    padding: 100px;
     display: flex;
     justify-content: center;
 }
 
 #pokedex {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 #pokemons {
+    padding: 50px 100px;
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
     justify-content: center;
+    width: 100vw;
+}
+
+.search-bar {
+    position: sticky;
+    top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #6c757d;
+    width: 100vw;
 }
 
 .pokedex-card {
@@ -41,6 +55,7 @@ body {
     display: flex;
     flex-direction: column;
     max-width: 50%;
+    margin-bottom: 5rem;
 }
 
 #currentPokemon {
@@ -82,16 +97,16 @@ body {
     justify-content: center;
 }
 
-.nav{
+.nav {
     --bs-nav-link-color: #adb5bd !important;
     --bs-nav-link-hover-color: #373b3e;
 }
 
-.grey{
+.grey {
     color: #adb5bd;
 }
 
-.black{
+.black {
     color: #373b3e;
 }
 
@@ -100,20 +115,137 @@ table {
     width: 100%;
 }
 
-td:first-of-type{
+td:first-of-type {
     width: 50%;
 }
 
-.bar-spacing{
+.bar-spacing {
     width: 40% !important;
 }
 
-.progress, .progress-stacked {
+.progress,
+.progress-stacked {
     --bs-progress-height: 0.5rem !important;
 }
 
-@media (max-width: 900px){
+#myBtnTop {
+    position: fixed;
+    /* Fixed/sticky position */
+    bottom: 45%;
+    /* Place the button at the bottom of the page */
+    left: 30px;
+    /* Place the button 30px from the right */
+    z-index: 99;
+    /* Make sure it does not overlap */
+    border: none;
+    /* Remove borders */
+    outline: none;
+    /* Remove outline */
+    background-color: #6c757d;
+    /* Set a background color */
+    color: white;
+    /* Text color */
+    cursor: pointer;
+    /* Add a mouse pointer on hover */
+    padding: 10px 15px;
+    /* Some padding */
+    border-radius: 50%;
+    /* Rounded corners */
+    font-size: 18px;
+    /* Increase font size */
+}
+
+#myBtnTop:hover {
+    background-color: #555;
+    /* Add a dark-grey background on hover */
+}
+
+#myBtnBtm {
+    position: fixed;
+    /* Fixed/sticky position */
+    bottom: 45%;
+    /* Place the button at the bottom of the page */
+    right: 30px;
+    /* Place the button 30px from the right */
+    z-index: 99;
+    /* Make sure it does not overlap */
+    border: none;
+    /* Remove borders */
+    outline: none;
+    /* Remove outline */
+    background-color: #6c757d;
+    /* Set a background color */
+    color: white;
+    /* Text color */
+    cursor: pointer;
+    /* Add a mouse pointer on hover */
+    padding: 10px 15px;
+    /* Some padding */
+    border-radius: 50%;
+    /* Rounded corners */
+    font-size: 18px;
+    /* Increase font size */
+}
+
+#myBtnBtm:hover {
+    background-color: #555;
+    /* Add a dark-grey background on hover */
+}
+
+.space-bar {
+    max-width: 30vw;
+    min-width: 30vw;
+}
+
+#displayed-pokemon {
+    white-space: nowrap;
+}
+
+@media (max-width: 900px) {
     .pokedex-card {
         min-width: 200px;
+    }
+}
+
+@media (max-width: 780px) {
+    .search-bar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #displayed-pokemon {
+        display: flex;
+        padding: unset !important;
+    }
+
+    .space-bar {
+        max-width: unset !important;
+        min-width: unset !important;
+    }
+}
+
+@media (max-width: 500px) {
+    #pokemon-card {
+        max-width: 90vw;
+    }
+}
+
+@media (max-width: 380px) {
+    .pokedex-card-img {
+        height: 75px;
+        width: 75px;
+    }
+
+    .pokedex-card {
+        min-width: 160px;
+        min-height: 20vh;
+    }
+
+    #myBtnTop {
+        left: 5px !important;
+    }
+
+    #myBtnBtm {
+        right: 5px !important;
     }
 }
