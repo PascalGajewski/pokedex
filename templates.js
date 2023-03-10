@@ -149,3 +149,32 @@ function writeBaseStatsInfoHTML() {
 </tr>
 `;
 }
+
+function writeSearchBarHTML(){
+    return `
+    <div class="search-bar">
+        <span class="ps-2 space-bar" id="displayed-pokemon">Pokemon Nr. 1 - ${lastPokemon - 1} displayed</span>
+        <input class="text-center mt-2 mb-2" type="text" placeholder="Search Pokemon" id="search" onkeyup="filterPokemon()">
+        <span class="pe-2 space-bar"></span>
+    </div>
+    <div class="w-100 pt-5 text-center"><h1>Pokedex</h1></div>
+    <div id="pokemons"></div>
+    `;
+}
+
+function writePokedexBtnsHTML(){
+    return  `
+    <div class="pt-5 pb-5 d-flex"><button type="button" class="btn btn-secondary btn-lg mx-auto" onclick="loadMorePokemon()">Load more Pokemons</button></div>
+    <button onclick="topFunction()" id="myBtnTop" title="Go to top">∧</button>
+    <button onclick="bottomFunction()" id="myBtnBtm" title="Go to bottom">∨</button>
+    `;
+}
+
+function writePokedexPokemonsHTML(p, Pokemon){
+    return  `
+    <div class="pokedex-card" id="pokemon-id-${p}" onclick="loadPokemon(${p})">
+        <h3 id="pokemon-id-${p}-name">${capitalizeFirstLetter(Pokemon['name'])}</h3>
+        <img class="pokedex-card-img" id="pokemon-id-${p}-img" src="${Pokemon['sprites']['other']['dream_world']['front_default']}">
+    </div>
+    `;
+}
