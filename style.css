@@ -55,7 +55,10 @@ body {
     display: flex;
     flex-direction: column;
     max-width: 50%;
-    margin-bottom: 5rem;
+}
+
+#pokemon-card {
+    margin-bottom: 5rem !important;
 }
 
 #currentPokemon {
