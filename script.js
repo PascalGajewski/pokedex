@@ -1,3 +1,4 @@
+let currentId;
 let currentPokemon;
 let currentPokemonColor;
 let currentPokemonEvolution;
@@ -8,14 +9,6 @@ let species = [];
 let abilities = [];
 let firstPokemon = 1;
 let lastPokemon = 151;
-
-function errorFunction() {
-    console.log('Fehler aufgetreten');
-}
-
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
 
 async function render() {
     writePokemonHTML();
@@ -47,6 +40,7 @@ async function loadPokemon(p) {
     await renderPokemonInfo();
     writePokemonDetailsHTML();
     renderPokemonDetails();
+    currentId = p;
 }
 
 async function renderPokemonInfo() {
@@ -218,3 +212,39 @@ function filterPokemon() {
         }
     }
 };
+
+async function previousPokemon() {
+    currentId--;
+    reloadPokemon(currentId)
+}
+
+async function nextPokemon(p) {
+    currentId++;
+    reloadPokemon(currentId)
+}
+
+function errorFunction() {
+    console.log('Fehler aufgetreten');
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+async function reloadPokemon(currentId){
+    species = [];
+    abilities = [];
+    let url = `https://pokeapi.co/api/v2/pokemon/${currentId}`;
+    let response = await fetch(url).catch(errorFunction);
+    currentPokemon = await response.json();
+    writePokemonHTML();
+    await renderPokemonInfo();
+    writePokemonDetailsHTML();
+    renderPokemonDetails();
+}
+
+function hideBtn(){
+    if(currentId == 1 && !document.getElementById('myBtnBack').classList.contains('d-none')){
+        document.getElementById('myBtnBack').classList.add('d-none');
+    }
+}

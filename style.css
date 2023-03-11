@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
-    background-color: #f6f8fc !important;
+    background-color: #e2e4e9 !important;
     display: flex;
     justify-content: center;
 }
@@ -64,7 +64,6 @@ body {
 #currentPokemon {
     display: grid;
     flex-direction: column;
-    background-color: light;
     color: white;
     border-radius: 30px;
     padding: 24px;
@@ -131,68 +130,35 @@ td:first-of-type {
     --bs-progress-height: 0.5rem !important;
 }
 
-#myBtnTop {
+.myBtnTopBtm {
     position: fixed;
-    /* Fixed/sticky position */
     bottom: 45%;
-    /* Place the button at the bottom of the page */
-    left: 30px;
-    /* Place the button 30px from the right */
     z-index: 99;
-    /* Make sure it does not overlap */
     border: none;
-    /* Remove borders */
     outline: none;
-    /* Remove outline */
     background-color: #6c757d;
-    /* Set a background color */
     color: white;
-    /* Text color */
     cursor: pointer;
-    /* Add a mouse pointer on hover */
     padding: 10px 15px;
-    /* Some padding */
     border-radius: 50%;
-    /* Rounded corners */
     font-size: 18px;
-    /* Increase font size */
+}
+
+#myBtnTop {
+    left: 30px;
 }
 
 #myBtnTop:hover {
     background-color: #555;
-    /* Add a dark-grey background on hover */
+
 }
 
 #myBtnBtm {
-    position: fixed;
-    /* Fixed/sticky position */
-    bottom: 45%;
-    /* Place the button at the bottom of the page */
     right: 30px;
-    /* Place the button 30px from the right */
-    z-index: 99;
-    /* Make sure it does not overlap */
-    border: none;
-    /* Remove borders */
-    outline: none;
-    /* Remove outline */
-    background-color: #6c757d;
-    /* Set a background color */
-    color: white;
-    /* Text color */
-    cursor: pointer;
-    /* Add a mouse pointer on hover */
-    padding: 10px 15px;
-    /* Some padding */
-    border-radius: 50%;
-    /* Rounded corners */
-    font-size: 18px;
-    /* Increase font size */
 }
 
 #myBtnBtm:hover {
     background-color: #555;
-    /* Add a dark-grey background on hover */
 }
 
 .space-bar {
@@ -202,6 +168,33 @@ td:first-of-type {
 
 #displayed-pokemon {
     white-space: nowrap;
+}
+
+.myBtnBackNext {
+    position: absolute;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #6c757d;
+    color: white;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 100%;
+    font-size: 18px;
+    margin: auto;
+    margin-top: 7%;
+}
+
+#myBtnBack:hover {
+    background-color: #555;
+}
+
+#myBtnNext {
+    left: 87%;
+}
+
+#myBtnNext:hover {
+    background-color: #555;
 }
 
 @media (max-width: 900px) {

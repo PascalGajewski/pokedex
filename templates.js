@@ -3,6 +3,10 @@ function writePokemonHTML() {
     document.getElementById('pokemon-card').innerHTML += `
     <div class="pb-5 pt-5 d-flex"><button type="button" class="btn btn-secondary btn-lg mx-auto" onclick="backToPokedex()">Back to Pokedex</button></div>
     <div id="currentPokemon">
+        <div class="position-relative w-100">
+            <button class="myBtnBackNext" onclick="previousPokemon()" id="myBtnBack" title="Previous Pokemon"><</button>
+            <button class="myBtnBackNext" onclick="nextPokemon()" id="myBtnNext" title="Next Pokemon">></button>
+        </div>
         <h1 id="pokemonName"></h1>
         <img id="pokemonImage">
     </div>
@@ -49,13 +53,14 @@ function writePokemonHTML() {
             </div>
         </div>
     </div>
-`
+`;
+hideBtn();
 }
 
 
-function writePokemonDetailsHTML(){
+function writePokemonDetailsHTML() {
     writeAboutInfoHTML();
-    writeBaseStatsInfoHTML();  
+    writeBaseStatsInfoHTML();
 }
 
 function writeAboutInfoHTML() {
@@ -150,7 +155,7 @@ function writeBaseStatsInfoHTML() {
 `;
 }
 
-function writeSearchBarHTML(){
+function writeSearchBarHTML() {
     return `
     <div class="search-bar">
         <span class="ps-2 space-bar" id="displayed-pokemon">Pokemon Nr. 1 - ${lastPokemon - 1} displayed</span>
@@ -162,16 +167,16 @@ function writeSearchBarHTML(){
     `;
 }
 
-function writePokedexBtnsHTML(){
-    return  `
+function writePokedexBtnsHTML() {
+    return `
     <div class="pt-5 pb-5 d-flex"><button type="button" class="btn btn-secondary btn-lg mx-auto" onclick="loadMorePokemon()">Load more Pokemons</button></div>
-    <button onclick="topFunction()" id="myBtnTop" title="Go to top">∧</button>
-    <button onclick="bottomFunction()" id="myBtnBtm" title="Go to bottom">∨</button>
+    <button class="myBtnTopBtm" onclick="topFunction()" id="myBtnTop" title="Go to top">∧</button>
+    <button class="myBtnTopBtm" onclick="bottomFunction()" id="myBtnBtm" title="Go to bottom">∨</button>
     `;
 }
 
-function writePokedexPokemonsHTML(p, Pokemon){
-    return  `
+function writePokedexPokemonsHTML(p, Pokemon) {
+    return `
     <div class="pokedex-card" id="pokemon-id-${p}" onclick="loadPokemon(${p})">
         <h3 id="pokemon-id-${p}-name">${capitalizeFirstLetter(Pokemon['name'])}</h3>
         <img class="pokedex-card-img" id="pokemon-id-${p}-img" src="${Pokemon['sprites']['other']['dream_world']['front_default']}">
